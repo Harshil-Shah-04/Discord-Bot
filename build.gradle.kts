@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("application")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "com.harshilshah"
@@ -27,6 +28,14 @@ java {
 
 application {
     mainClass.set("com.harshilshah.discordbot.Main")
+}
+
+tasks.jar {
+    manifest {
+        attributes(
+            "Main-Class" to "com.harshilshah.discordbot.Main"
+        )
+    }
 }
 
 tasks.test {

@@ -1,14 +1,23 @@
-# Use lightweight Java image
-FROM eclipse-temurin:17-jdk-jammy
+# -------- Build Stage --------
+FROM eclipse-temurin:17-jdk-jammy AS builder
 
-# Set working directory
 WORKDIR /app
 
-# Copy project files
 COPY . .
 
-# Build the project
-RUN ./gradlew build --no-daemon
+# Fix permission for gradlew
+RUN chmod +x ./gradlew
+
+# Build fat jar
+RUN ./gradlew shadowJar --no-daemon
+
+# -------- Runtime Stage --------
+FROM eclipse-temurin:17-jre-jammy
+
+WORKDIR /app
+
+# Copy only the built jar
+COPY --from=builder /app/build/libs/*-all.jar app.jar
 
 # Run the bot
-CMD ["java", "-jar", "build/libs/discord-bot-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "app.jar"]
