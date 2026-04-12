@@ -11,4 +11,4 @@ COPY . .
 RUN ./gradlew build --no-daemon
 
 # Run the bot
-CMD ["java", "-jar", "build/libs/discord-bot-1.0.jar"]
+CMD ["java", "-jar", "build/libs/discord-bot-1.0-SNAPSHOT.jar"]
