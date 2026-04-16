@@ -1,7 +1,8 @@
 package com.harshilshah.discordbot.events;
 
 import com.harshilshah.discordbot.commands.CommandHandler;
-import com.harshilshah.discordbot.config.Setup;
+import com.harshilshah.discordbot.Setup;
+
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 

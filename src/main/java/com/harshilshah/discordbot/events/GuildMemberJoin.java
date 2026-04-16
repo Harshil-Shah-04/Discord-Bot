@@ -10,12 +10,8 @@ public class GuildMemberJoin extends ListenerAdapter {
 
         if (event.getUser().isBot()) return;
 
-        String userName = event.getMember().getAsMention();
-        String serverName = event.getGuild().getName();
-
         event.getGuild().getTextChannelsByName("general", true)
-                .stream().findFirst()
-                .ifPresent(channel ->
-                        channel.sendMessage("Welcome to "+serverName+" "+userName).queue());
+                .stream().findFirst().ifPresent(channel ->
+                        channel.sendMessage("Welcome to "+event.getGuild().getName()+" "+event.getMember().getAsMention()).queue());
     }
 }

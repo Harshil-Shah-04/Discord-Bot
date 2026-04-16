@@ -1,11 +1,11 @@
-package com.harshilshah.discordbot.config;
+package com.harshilshah.discordbot;
 
 import com.harshilshah.discordbot.commands.*;
 import com.harshilshah.discordbot.events.*;
-
 import com.sun.net.httpserver.HttpServer;
 
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
@@ -20,6 +20,7 @@ import java.util.List;
 public class Setup {
 
     private static final Logger logger = LoggerFactory.getLogger(Setup.class);
+    private static final HashMap<String, CommandHandler> commandHandlerMap = new HashMap<>();
 
     public static void startServer() {
         try {
@@ -38,7 +39,6 @@ public class Setup {
                 exchange.close();
             });
             server.start();
-            logger.info("HTTP Server Started");
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
@@ -47,17 +47,22 @@ public class Setup {
     public static void registerCommands(Guild guild) {
         guild.updateCommands().addCommands(
                         Commands.slash("fetch", "Grizzy fetches a random object"),
+
                         Commands.slash("fact", "Grizzy replies with a fact"),
-                        Commands.slash("help", "Show help")
+
+                        Commands.slash("impersonate", "Send a message as another user")
+                                .addOption(OptionType.USER, "user", "User to impersonate", true)
+                                .addOption(OptionType.STRING, "message", "Message to send", true)
+
+                        // Commands.slash("help", "Show help")
                 )
                 .queue();
     }
 
-    private static final HashMap<String, CommandHandler> commandHandlerMap = new HashMap<>();
-
     public static void mapCommands() {
         commandHandlerMap.put("fact", new Fact());
         commandHandlerMap.put("fetch", new Fetch());
+        commandHandlerMap.put("impersonate", new Impersonate());
     }
 
     public static HashMap<String, CommandHandler> getCommandHandlerMap() {
@@ -79,10 +84,10 @@ public class Setup {
 
     public static Object[] getEventListeners() {
         return List.of(
-                new Ready(),
                 new GuildJoin(),
                 new GuildMemberJoin(),
                 new MessageReceived(),
+                new Ready(),
                 new SlashCommandInteraction()
         ).toArray();
     }

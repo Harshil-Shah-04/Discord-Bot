@@ -18,6 +18,8 @@ dependencies {
     implementation("net.dv8tion:JDA:5.6.1")
     implementation("org.slf4j:slf4j-api:2.0.17")
     implementation("ch.qos.logback:logback-classic:1.5.32")
+    implementation("org.postgresql:postgresql:42.7.3")
+    implementation("club.minnced:discord-webhooks:0.8.4")
 }
 
 java {

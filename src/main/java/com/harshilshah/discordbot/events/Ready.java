@@ -1,6 +1,6 @@
 package com.harshilshah.discordbot.events;
 
-import com.harshilshah.discordbot.config.Setup;
+import com.harshilshah.discordbot.Setup;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
