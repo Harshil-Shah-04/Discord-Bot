@@ -21,15 +21,13 @@ public class Fact implements CommandHandler {
             "Orca is a liar",
     };
 
-    private final String randomFact = FACTS[RANDOM.nextInt(FACTS.length)];
-
     @Override
     public void handlePrefixCommand(MessageReceivedEvent event) {
-        event.getChannel().sendMessage(randomFact).queue();
+        event.getChannel().sendMessage(FACTS[RANDOM.nextInt(FACTS.length)]).queue();
     }
 
     @Override
     public void handleSlashCommand(SlashCommandInteractionEvent event) {
-        event.reply(randomFact).queue();
+        event.reply(FACTS[RANDOM.nextInt(FACTS.length)]).queue();
     }
 }

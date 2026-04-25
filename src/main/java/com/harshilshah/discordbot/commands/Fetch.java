@@ -17,15 +17,13 @@ public class Fetch implements CommandHandler {
             "bone  \uD83E\uDDB4"
     };
 
-    private final String randomObject = OBJECTS[RANDOM.nextInt(OBJECTS.length)];
-
     @Override
     public void handlePrefixCommand(MessageReceivedEvent event) {
-        event.getChannel().sendMessage("Fetched a " + randomObject).queue();
+        event.getChannel().sendMessage("Fetched a " + OBJECTS[RANDOM.nextInt(OBJECTS.length)]).queue();
     }
 
     @Override
     public void handleSlashCommand(SlashCommandInteractionEvent event) {
-        event.reply("Fetched a " + randomObject).queue();
+        event.reply("Fetched a " + OBJECTS[RANDOM.nextInt(OBJECTS.length)]).queue();
     }
 }
