@@ -19,6 +19,8 @@ public class Fact implements CommandHandler {
             "Prince is awesome",
             "Valerian is emo <:val:1369931453554495518>",
             "Orca is a liar",
+            "Horsh has been called : harsh, horse, horshie, harshit, zane, azriel, saptarshi, deku, kaizo senpai, Harsh kun, hart_hekar_harsh, ursh \uD83D\uDC34",
+            "Izumi is a baddiee \uD83D\uDC85"
     };
 
     @Override
